@@ -10,9 +10,9 @@ function init(){
 }
 
 function makeProductsButtonClickable(){
-    const pruductButtons = document.querySelectorAll("a.nav-link.text-dark.products");
-    for (let pruductButton of pruductButtons){
-        pruductButton.addEventListener("click", showMenu);
+    const productButtons = document.querySelectorAll("a.nav-link.text-dark.products");
+    for (let productButton of productButtons){
+        productButton.addEventListener("click", showMenu);
     }
 }
 
