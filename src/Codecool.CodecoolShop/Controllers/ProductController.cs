@@ -36,6 +36,12 @@ namespace Codecool.CodecoolShop.Controllers
             return View();
         }
 
+        public IActionResult Category()
+        {
+            var category = ProductService.GetProductsCategory();
+            return PartialView(category.ToList());
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

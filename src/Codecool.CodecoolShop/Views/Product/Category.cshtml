@@ -1,0 +1,12 @@
+@{
+    ViewData["Title"] = "Category Page";
+}
+
+@model List<Codecool.CodecoolShop.Models.ProductCategory>
+
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    @foreach (var element in Model)
+    {
+        <a class="dropdown-item" href="#">@element.Name</a>
+    }
+</div>
