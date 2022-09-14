@@ -19,8 +19,8 @@ function makeProductsButtonClickable(){
 async function showMenu(element){
     let menu = await sendGetRequest(`/Product/${element.target.innerText}`)
     let htmlString = await menu.text()
-    let parent = element.target.parentNode;
-    parent.innerHTML += htmlString;
+    let parent = element.target.nextElementSibling;
+    parent.innerHTML = htmlString;
 }
 
 function makeAddToCartButtonsClickable() {
