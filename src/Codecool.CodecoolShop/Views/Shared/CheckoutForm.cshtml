@@ -5,7 +5,7 @@
 
 
 
-    <form asp-controller="Product" asp-action="PaymentForm" class="row g-3" method="post" validate id="checkout-form">
+    <form asp-controller="Product" asp-action="PaymentForm" class="row g-3" method="post" novalidate id="checkout-form">
         <div class="col-md-12">
         <h2>@ViewData["Title"]</h2>
         </div>
@@ -22,8 +22,8 @@
             <input id="email_input" class="form-control" type="email" name="email" required>
         </div>
         <div class="col-md-6">
-            <label for="phone_input">Phone number</label>
-            <input id="phone_input" class="form-control" type="tel" name="phone" required>
+            <label for="phone_input">Phone number (like 36 70 123 4567)</label>
+            <input id="phone_input" class="form-control" type="tel" name="phone" pattern="[0-9]{2} [0-9]{2} [0-9]{3} [0-9]{4}" required>
         </div>
         <div class="col-12">
             <h3>Billing Address</h3>
