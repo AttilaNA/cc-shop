@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Codecool.CodecoolShop.Daos.Implementations;
 using Codecool.CodecoolShop.Helpers;
 using Codecool.CodecoolShop.Models;
 using Codecool.CodecoolShop.Services;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Codecool.CodecoolShop.Controllers
 {
@@ -32,7 +34,7 @@ namespace Codecool.CodecoolShop.Controllers
         }
 
         [Route("buy/{id}")]
-        public IActionResult Buy(string id)
+        public void Buy(string id)
         {
             if (SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart") == null)
             {
@@ -54,7 +56,7 @@ namespace Codecool.CodecoolShop.Controllers
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
-            return RedirectToAction("Index");
+          
         }
 
         [Route("remove/{id}")]
@@ -72,12 +74,33 @@ namespace Codecool.CodecoolShop.Controllers
             List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart");
             for (int i = 0; i < cart.Count; i++)
             {
-                if (cart[i].Product.Id.Equals(id))
+                if (cart[i].Product.Id.Equals(int.Parse(id)))
                 {
                     return i;
                 }
             }
             return -1;
+        }
+
+        [Route("item-count")]
+        public int GetItemCountInCart()
+        {
+            if (HttpContext == null)
+            {
+                return 0;
+            }
+
+            List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart");
+            if (cart == null)
+            {
+                return 0;
+            }
+            int count = 0;
+            for (int i = 0; i < cart.Count; i++)
+            {
+                count += cart[i].Quantity;
+            }
+            return count;
         }
 
     }
