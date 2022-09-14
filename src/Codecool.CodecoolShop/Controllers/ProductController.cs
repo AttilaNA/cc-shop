@@ -22,7 +22,7 @@ namespace Codecool.CodecoolShop.Controllers
             _logger = logger;
             ProductService = new ProductService(
                 ProductDaoMemory.GetInstance(),
-                ProductCategoryDaoMemory.GetInstance());
+                ProductCategoryDaoMemory.GetInstance(), SupplierDaoMemory.GetInstance());
         }
 
         public IActionResult Index()
@@ -39,6 +39,18 @@ namespace Codecool.CodecoolShop.Controllers
         public IActionResult CheckoutForm() => View();
 
         public IActionResult PaymentForm() => View();
+
+        public IActionResult Category()
+        {
+            var categories = ProductService.GetProductCategories();
+            return PartialView(categories.ToList());
+        }
+        
+        public IActionResult Supplier()
+        {
+            var suppliers = ProductService.GetProductSuppliers();
+            return PartialView(suppliers.ToList());
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

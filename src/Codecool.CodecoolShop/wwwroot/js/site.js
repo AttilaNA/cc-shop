@@ -1,8 +1,26 @@
-﻿init();
+﻿
+// Write your JavaScript code.
 
-function init() {
+init();
+
+function init(){
+    makeProductsButtonClickable();
     makeAddToCartButtonsClickable();
     displayCartItemCount();
+}
+
+function makeProductsButtonClickable(){
+    const productButtons = document.querySelectorAll("a.nav-link.text-dark.products");
+    for (let productButton of productButtons){
+        productButton.addEventListener("click", showMenu);
+    }
+}
+
+async function showMenu(element){
+    let menu = await sendGetRequest(`/Product/${element.target.innerText}`)
+    let htmlString = await menu.text()
+    let parent = element.target.parentNode;
+    parent.innerHTML += htmlString;
 }
 
 function makeAddToCartButtonsClickable() {
@@ -31,4 +49,5 @@ async function sendGetRequest(url) {
         return response;
     }
 }
+
 $("#checkout-form").validate();
