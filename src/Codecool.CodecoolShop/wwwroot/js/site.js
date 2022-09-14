@@ -1,12 +1,12 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
+﻿
 // Write your JavaScript code.
 
-init()
+init();
 
 function init(){
     makeProductsButtonClickable();
+    makeAddToCartButtonsClickable();
+    displayCartItemCount();
 }
 
 function makeProductsButtonClickable(){
@@ -17,13 +17,31 @@ function makeProductsButtonClickable(){
 }
 
 async function showMenu(element){
-    let menu = await getProducts(`/Product/${element.target.innerText}`)
+    let menu = await sendGetRequest(`/Product/${element.target.innerText}`)
     let htmlString = await menu.text()
     let parent = element.target.parentNode;
     parent.innerHTML += htmlString;
 }
 
-async function getProducts(url) {
+function makeAddToCartButtonsClickable() {
+    const Buttons = document.querySelectorAll(".add-cart");
+    for (let Button of Buttons) {
+        Button.addEventListener("click", addToCart);
+    }
+}
+
+async function addToCart(element) {
+    await sendGetRequest(`/Cart/buy/${element.target.dataset.id}`);
+    displayCartItemCount();
+
+}
+async function displayCartItemCount() {
+    let data = await (await sendGetRequest(`/Cart/item-count`)).json();
+    document.querySelector("#CartCount").innerHTML = (data != "0") ? `(${data})` : "";
+}
+
+
+async function sendGetRequest(url) {
     let response = await fetch(url, {
         method: "GET",
     });
@@ -31,3 +49,5 @@ async function getProducts(url) {
         return response;
     }
 }
+
+$("#checkout-form").validate();

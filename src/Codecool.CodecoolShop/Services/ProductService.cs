@@ -28,17 +28,22 @@ namespace Codecool.CodecoolShop.Services
             ProductCategory category = this.productCategoryDao.Get(categoryId);
             return this.productDao.GetBy(category);
         }
-        
-        public IEnumerable<ProductCategory> GetProductCategorys()
+
+        public IEnumerable<ProductCategory> GetProductCategories()
         {
             var categories = this.productCategoryDao.GetAll();
             return categories;
         }
-        
+
         public IEnumerable<Supplier> GetProductSuppliers()
         {
             var suppliers = this.supplierDao.GetAll();
             return suppliers;
+        }
+
+        public Product GetProduct(int productId)
+        {
+            return this.productDao.Get(productId);
         }
     }
 }

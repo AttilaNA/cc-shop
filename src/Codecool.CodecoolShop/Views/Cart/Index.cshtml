@@ -1,0 +1,81 @@
+﻿@using System.Diagnostics.Eventing.Reader
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<h3 class="text-center">Cart Page</h3>
+<table class="table">
+	<thead class="thead-dark">
+	<tr>
+		<th scope="col"></th>
+		<th scope="col">Product Name</th>
+		<th scope="col">Quantity</th>
+		<th scope="col">Unit price</th>
+		<th scope="col">Subtotal price</th>
+		<th scope="col"></th>
+	</tr>
+	</thead>
+	<tbody>
+	@if (ViewBag.cart is not null)
+	{
+		@foreach (var item in ViewBag.cart)
+		{
+			<tr>
+				<td><img src="~/img/@(item.Product.Name).jpg" style="height: 30%;"></td>
+				<td class="align-middle">@item.Product.Name</td>
+				<td class="align-middle" style="width: 15%">
+					<div class="input-group" >
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-danger btn-number"   data-type="minus" data-field="quant[2]">
+								<span class="glyphicon glyphicon-minus">-</span>
+							</button>
+						</span>
+						<input type="text" name="quant[2]" class="form-control input-number" value="@item.Quantity" min="1" max="100">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+								<span class="glyphicon glyphicon-plus">+</span>
+							</button>
+						</span>
+					</div>
+				</td>
+				<td class="align-middle">@item.Product.DefaultPrice @item.Product.Currency</td>
+				<td class="align-middle"> @(item.Product.DefaultPrice * item.Quantity) @item.Product.Currency</td>
+				<td class="align-middle"><a type="button" class="btn btn-primary remove" style="float: bottom; color: Red">Remove</a></td>
+			</tr>
+		}
+		<tr>
+			<td></td>
+			<td class="align-middle"><a type="button" class="btn btn-primary continue" style="float: bottom; color: white">Continue Shopping</a></td>
+			<td class="align-middle"></td>
+			<td class="align-middle">Total Price:</td>
+			<td class="align-middle"> @ViewBag.total @ViewBag.cart[0].Product.Currency</td>
+			<td class="align-middle"><a type="button" class="btn btn-primary checkout" style="float: bottom; color: white">Checkout</a></td>
+		</tr>
+	}else{
+		<tr>
+			<td></td>
+			<td class="align-middle"><a type="button" class="btn btn-primary continue" style="float: bottom; color: white">Continue Shopping</a></td>
+			<td class="align-middle"></td>
+			<td class="align-middle"></td>
+			<td class="align-middle"></td>
+			<td class="align-middle"></td>
+		</tr>
+	}
+	</tbody >
+	
+
+</table >
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/number.js" asp-append-version="true"></script>
+</body>
+
+</html>

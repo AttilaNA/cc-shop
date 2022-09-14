@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Codecool.CodecoolShop</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/CardJs-master/card-js.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -30,7 +31,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link text-dark products supplier dropdown-toggle" data-toggle="dropdown">Supplier</a>
                         </li>
-                    </ul>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="CheckoutForm">Checkout</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index"><span id="CartCount"></span>Cart</a>
+                        </li>
+                     </ul>
                 </div>
             </div>
         </nav>
@@ -47,7 +54,10 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/CardJs-master/card-js.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
