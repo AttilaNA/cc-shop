@@ -1,11 +1,25 @@
 ﻿@{
-    ViewData["Title"] = "Checkout Cart";
+    ViewData["Title"] = "Payment";
 }
 
+<div class="card" width="280px">
+    <div class="card-header">
+        To complete your order, please fill up the form:
+    </div>
+    <div class="card-body">
+        <div class="card-js">
+          <input class="card-number my-custom-class" name="card-number">
+          <input class="name" id="the-card-name-id" name="card-holders-name" placeholder="Name on card">
+          <input class="expiry-month" name="expiry-month">
+          <input class="expiry-year" name="expiry-year">
+          <input class="cvc" type="password" name="cvc">
+        </div>
+        <span class="mt-20 btn btn-block btn-primary">Pay now</span>
+    </div>
+</div>
 
 
-
-    <form asp-controller="Product" asp-action="PaymentForm" class="row g-3" method="post" validate id="checkout-form">
+    @*<form action="" class="row g-3" method="post" validate id="checkout-form">
         <div class="col-md-12">
         <h2>@ViewData["Title"]</h2>
         </div>
@@ -14,16 +28,30 @@
         </div>
         
         <div class="col-12">
-            <label for="name_input">Name</label><br>
-            <input id="name_input" class="form-control" type="text" name="Name" required>
+            <label for="card_name_input"> Cardholder Name</label><br>
+            <input id="card_name_input" class="form-control" type="text" name="Name" required>
         </div>
         <div class="col-md-6">
-            <label for="email_input">E-mail</label>
-            <input id="email_input" class="form-control" type="email" name="email" required>
+            <label for="cardnumber_input">Card number</label>
+            <input id="cardnumber_input" class="form-control" type="number" name="cardnumber" required>
         </div>
-        <div class="col-md-6">
-            <label for="phone_input">Phone number</label>
-            <input id="phone_input" class="form-control" type="tel" name="phone" required>
+        <div class="col-md-2">
+            <label for="expiry_month_input">Phone number</label>
+            <select class="form-select" aria-label="Select month of expiry">
+              <option selected></option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
         </div>
         <div class="col-12">
             <h3>Billing Address</h3>
@@ -66,4 +94,5 @@
                         <input id="ship_zipcode_input" class="form-control" type="text" name="zip" required>
                     </div>
         <button type="submit">Go to Payment</button><br>
-    </form>
+    </form>*@
+

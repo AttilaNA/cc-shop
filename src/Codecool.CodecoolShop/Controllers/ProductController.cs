@@ -38,6 +38,8 @@ namespace Codecool.CodecoolShop.Controllers
         
         public IActionResult CheckoutForm() => View();
 
+        public IActionResult PaymentForm() => View();
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
