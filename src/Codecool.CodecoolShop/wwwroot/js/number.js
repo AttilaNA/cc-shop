@@ -10,6 +10,9 @@
 
             if (currentVal > input.attr('min')) {
                 input.val(currentVal - 1).change();
+                if (document.querySelector('[data-type="plus"]').disabled) {
+                    document.querySelector('[data-type="plus"]').disabled = false;
+                }
             }
             if (parseInt(input.val()) == input.attr('min')) {
                 $(this).attr('disabled', true);
@@ -19,6 +22,10 @@
 
             if (currentVal < input.attr('max')) {
                 input.val(currentVal + 1).change();
+                if(document.querySelector('[data-type="minus"]').disabled)
+                {
+                    document.querySelector('[data-type="minus"]').disabled = false;
+                }
             }
             if (parseInt(input.val()) == input.attr('max')) {
                 $(this).attr('disabled', true);
