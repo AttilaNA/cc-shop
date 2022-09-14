@@ -30,6 +30,7 @@ namespace Codecool.CodecoolShop.Controllers
         {
             var cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
+            ViewBag.total = getTotalPrice();
             return View();
         }
 
@@ -101,6 +102,23 @@ namespace Codecool.CodecoolShop.Controllers
                 count += cart[i].Quantity;
             }
             return count;
+        }
+
+        public decimal getTotalPrice()
+        {
+            decimal sum = 0; 
+            if (SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart") != null)
+            {
+                List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart");
+                foreach (var item in cart)
+                {
+                    sum+= item.Product.DefaultPrice * item.Quantity;
+                }
+                
+            }
+
+            return sum;
+
         }
 
     }

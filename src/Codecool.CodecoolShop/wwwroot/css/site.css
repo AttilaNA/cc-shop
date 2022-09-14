@@ -18,9 +18,16 @@ a {
   border-color: #1861ac;
 }
 
-    .btn-primary:hover {
-        background-color: #14b2d5;
+.btn-primary:hover {
+    background-color: #14b2d5;
+}
+.remove {
+    background-color: white;
+}
+    .remove.btn-primary:hover {
+        background-color: wheat;
     }
+
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
