@@ -32,11 +32,15 @@ function makeAddToCartButtonsClickable() {
 async function addToCart(id) {
     await sendGetRequest(`/Cart/buy/${id}`);
     displayCartItemCount();
+}
 
+async function SetCartItemCount(id, count) {
+    await sendGetRequest(`/Cart/set/${id}/${count}`);
+    displayCartItemCount();
 }
 async function displayCartItemCount() {
     let data = await (await sendGetRequest(`/Cart/item-count`)).json();
-    document.querySelector("#CartCount").innerHTML = (data != "0") ? `(${data})` : "";
+    document.querySelector("#CartCount").innerHTML = (data != "0") ? `${data}` : "";
 }
 
 async function decreaseFromCart(id) {

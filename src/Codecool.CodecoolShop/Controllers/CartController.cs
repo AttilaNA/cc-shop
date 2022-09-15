@@ -75,6 +75,22 @@ namespace Codecool.CodecoolShop.Controllers
                 }
             }
         }
+        [Route("set/{id}/{count}")]
+        public void Set(string id,string count)
+        {
+            if (SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart") != null)
+            {
+
+                List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart");
+                int index = isExist(id);
+                if (index != -1)
+                {
+                    cart[index].Quantity= int.Parse(count);
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                }
+            }
+        }
+
 
         [Route("remove/{id}")]
         public string Remove(string id)

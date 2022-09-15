@@ -45,7 +45,7 @@ $('.btn-number').click(function (e) {
 $('.input-number').focusin(function () {
     $(this).data('oldValue', $(this).val());
 });
-$('.input-number').change(function () {
+$('.input-number').change(function (e) {
 
     minValue = parseInt($(this).attr('min'));
     maxValue = parseInt($(this).attr('max'));
@@ -53,17 +53,25 @@ $('.input-number').change(function () {
 
     name = $(this).attr('name');
     if (valueCurrent >= minValue) {
-        $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+        $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled');
     } else {
         alert('Sorry, the minimum value was reached');
         $(this).val($(this).data('oldValue'));
     }
     if (valueCurrent <= maxValue) {
-        $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+        $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled');
     } else {
         alert('Sorry, the maximum value was reached');
         $(this).val($(this).data('oldValue'));
     }
+
+    if (valueCurrent <= maxValue && valueCurrent >= minValue) {
+        $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled');
+        setItemCount(e.target.dataset.id, valueCurrent);
+        updateTotalPrice();
+    }
+
+    
 
 
 });
@@ -87,10 +95,14 @@ $(".input-number").keydown(function (e) {
 function updateSubTotalPrice(id, count) {
     let span = document.querySelector(`#sub-${id}`);
     span.innerHTML = parseFloat(span.dataset.price) * parseFloat(count);
-    updateTotalPrice()
-    
+    updateTotalPrice();
+
 }
 
+function setItemCount(id, count) {
+    SetCartItemCount(id, count);
+    updateSubTotalPrice(id, count);
+}
 
 function AddEventListenerToRemove() {
     const Buttons = document.querySelectorAll(".remove");
@@ -107,7 +119,6 @@ function updateTotalPrice() {
     let datas = document.querySelectorAll(".sub-total");
     let sum = 0;
     for (var data of datas) {
-        console.log(data);
         sum += parseFloat(data.innerHTML);
     }
     document.getElementById("total-price").innerHTML = sum;
