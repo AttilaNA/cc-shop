@@ -16,10 +16,23 @@ a {
   color: #0366d6;
 }
 
+
+#CartCount {
+    color: orangered;
+    border: 1px solid rgba(189, 195, 199, 0.85);
+    background-color: rgba(189, 195, 199, 0.85);
+    border-radius: 25px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 15px;
+    display: inline-block;
+    transform: translate(40px,5px);
+}
+
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .btn-primary:hover {

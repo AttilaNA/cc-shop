@@ -24,45 +24,47 @@
 	</tr>
 	</thead>
 	<tbody>
-	@if (ViewBag.cart is not null)
+	@if (ViewBag.cart is not null && (ViewBag.cart).Count != 0)
 	{
 		@foreach (var item in ViewBag.cart)
 		{
-			<tr>
+			<tr data-id="@item.Product.Id">
 				<td><img src="~/img/@(item.Product.Name).jpg" style="height: 30%;"></td>
 				<td class="align-middle">@item.Product.Name</td>
 				<td class="align-middle" style="width: 15%">
-					<div class="input-group" >
+					<div class="input-group">
 						<span class="input-group-btn">
-							<button type="button" class="btn btn-danger btn-number"   data-type="minus" data-field="quant[2]">
+							<button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[@item.Product.Id]">
 								<span class="glyphicon glyphicon-minus">-</span>
 							</button>
 						</span>
-						<input type="text" name="quant[2]" class="form-control input-number" value="@item.Quantity" min="1" max="100">
+						<input type="text" name="quant[@item.Product.Id]" data-id="@item.Product.Id" class="form-control input-number" value="@item.Quantity" min="1" max="100">
 						<span class="input-group-btn">
-							<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+							<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[@item.Product.Id]">
 								<span class="glyphicon glyphicon-plus">+</span>
 							</button>
 						</span>
 					</div>
 				</td>
 				<td class="align-middle">@item.Product.DefaultPrice @item.Product.Currency</td>
-				<td class="align-middle"> @(item.Product.DefaultPrice * item.Quantity) @item.Product.Currency</td>
+				<td class="align-middle"> <span class="sub-total" data-price="@item.Product.DefaultPrice" id="sub-@item.Product.Id">@(item.Product.DefaultPrice * item.Quantity)</span> @item.Product.Currency</td>
 				<td class="align-middle"><a type="button" class="btn btn-primary remove" style="float: bottom; color: Red">Remove</a></td>
 			</tr>
 		}
 		<tr>
 			<td></td>
-			<td class="align-middle"><a type="button" class="btn btn-primary continue" style="float: bottom; color: white">Continue Shopping</a></td>
+			<td class="align-middle"><a type="button" asp-area="" asp-controller="Product" asp-action="Index" class="btn btn-primary continue" style="float: bottom; color: white">Continue Shopping</a></td>
 			<td class="align-middle"></td>
 			<td class="align-middle">Total Price:</td>
-			<td class="align-middle"> @ViewBag.total @ViewBag.cart[0].Product.Currency</td>
+			<td class="align-middle"> <span id="total-price">@ViewBag.total</span> @ViewBag.cart[0].Product.Currency</td>
 			<td class="align-middle"><a type="button" class="btn btn-primary checkout" style="float: bottom; color: white">Checkout</a></td>
 		</tr>
-	}else{
+	}
+	else
+	{
 		<tr>
 			<td></td>
-			<td class="align-middle"><a type="button" class="btn btn-primary continue" style="float: bottom; color: white">Continue Shopping</a></td>
+			<td class="align-middle"><a type="button" asp-area="" asp-controller="Product" asp-action="Index" class="btn btn-primary continue" style="float: bottom; color: white">Continue Shopping</a></td>
 			<td class="align-middle"></td>
 			<td class="align-middle"></td>
 			<td class="align-middle"></td>
