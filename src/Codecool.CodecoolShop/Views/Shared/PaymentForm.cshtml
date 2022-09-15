@@ -11,92 +11,15 @@
     <div class="card-body">
         <div class="col-md-6">Amount</div>
         <div class="col-md-6"><strong>@ViewBag.total</strong> </div>
-        <div class="card-js">
-            <input class="card-number my-custom-class" name="card-number">
+        <div class="card-js" id="payment-form">
+            <input class="card-number my-custom-class" name="card-number" id="card-number">
             <input class="name" id="the-card-name-id" name="card-holders-name" placeholder="Name on card">
             <input class="expiry-month" name="expiry-month">
             <input class="expiry-year" name="expiry-year">
             <input class="cvc" type="password" name="cvc">
         </div>
-        <span class="mt-20 btn btn-block btn-primary" id="start-payment">Pay now</span>
+        <a class="mt-20 btn btn-block btn-primary" id="start-payment" asp-controller="Order" asp-action="Confirmation">Pay now</a>
     </div>
 </div>
 
-
-    @*<form action="" class="row g-3" method="post" validate id="checkout-form">
-        <div class="col-md-12">
-        <h2>@ViewData["Title"]</h2>
-        </div>
-        <div class="col-md-6">
-            <p>Please fill up the form: </p>
-        </div>
-        
-        <div class="col-12">
-            <label for="card_name_input"> Cardholder Name</label><br>
-            <input id="card_name_input" class="form-control" type="text" name="Name" required>
-        </div>
-        <div class="col-md-6">
-            <label for="cardnumber_input">Card number</label>
-            <input id="cardnumber_input" class="form-control" type="number" name="cardnumber" required>
-        </div>
-        <div class="col-md-2">
-            <label for="expiry_month_input">Phone number</label>
-            <select class="form-select" aria-label="Select month of expiry">
-              <option selected></option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-                <option value="03">03</option>
-                <option value="04">04</option>
-                <option value="05">05</option>
-                <option value="06">06</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-            </select>
-        </div>
-        <div class="col-12">
-            <h3>Billing Address</h3>
-        </div>
-        <div class="col-12">
-            <label for="address_input">Address</label>
-            <input id="address_input" class="form-control" type="text" name="address" required>
-        </div>
-            
-            <div class="col-6">
-                <label for="country_input">Country</label>
-                <input id="country_input" class="form-control" type="text" name="country" required>
-            </div>
-            <div class="col-6">
-                <label for="city_input">City</label>
-                <input id="city_input" class="form-control" type="text" name="city" required>
-            </div>
-            <div class="col-md-3">
-                <label for="zipcode_input">Zipcode</label>
-                <input id="zipcode_input" class="form-control" type="text" name="zip" required>
-            </div>
-        <div class="col-12">
-            <h3>Shipping Address</h3>
-        </div>
-        <div class="col-12">
-             <label for="ship_address_input">Address</label>
-             <input id="ship_address_input" class="form-control" type="text" name="address" required>
-        </div>
-                    
-                    <div class="col-md-6">
-                        <label for="ship_country_input">Country</label>
-                        <input id="ship_country_input" class="form-control" type="text" name="country" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="ship_city_input">City</label>
-                        <input id="ship_city_input" class="form-control" type="text" name="city" required>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="ship_zipcode_input">Zipcode</label>
-                        <input id="ship_zipcode_input" class="form-control" type="text" name="zip" required>
-                    </div>
-        <button type="submit">Go to Payment</button><br>
-    </form>*@
-
+<script src="~/js/paymentManager.js" asp-append-version="true"></script>

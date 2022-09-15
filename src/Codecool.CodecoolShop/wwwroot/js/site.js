@@ -94,8 +94,10 @@ function collectCheckoutForm() {
 }
 
 async function collectOrder() {
-    let response = await sendPostRequest('/Order/index', collectCheckoutForm());
-    window.location.href = response.url;
+    if ($("#checkout-form").valid()) {
+        let response = await sendPostRequest('/Order/index', collectCheckoutForm());
+        window.location.href = response.url;
+    }
 }
 
 function proceedToPayment() {

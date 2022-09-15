@@ -15,7 +15,6 @@ public class OrderController : Controller
 
         return RedirectToAction("PaymentForm");
     }
-
     
     public IActionResult CheckoutForm() => View();
 
@@ -25,9 +24,21 @@ public class OrderController : Controller
         return View();
     }
 
-    public void RecordOrder()
+    public IActionResult Confirmation()
     {
-        
+        Order paidOrder = CollectOrderInformation();
+        ViewBag.cart = paidOrder.OrderedItems;
+        return PartialView();
+    }
+
+    public Order CollectOrderInformation()
+    {
+        List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart");
+        Order order = SessionHelper.GetObjectFromJson<Order>(HttpContext.Session, "order");
+        order.OrderedItems = cart;
+        JsonHelper.AppendJsonFile(order,"paidOrder");
+
+        return order;
     }
     
     public decimal GetTotalPrice()
