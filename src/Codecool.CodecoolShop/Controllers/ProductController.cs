@@ -24,13 +24,45 @@ namespace Codecool.CodecoolShop.Controllers
                 ProductDaoMemory.GetInstance(),
                 ProductCategoryDaoMemory.GetInstance(), SupplierDaoMemory.GetInstance());
         }
-
-        public IActionResult Index()
+        
+        public IActionResult Index(string name)
         {
-            var products = ProductService.GetProductsForCategory(1);
-            return View(products.ToList());
+            if (name == null)
+            {
+                var products = ProductService.GetProductsForCategory(1);
+                return View(products.ToList());
+            }
+
+            if (ProductService.GetProductCategories().Select(x => x.Name).ToList().Contains(name))
+            {
+                var productsByCategory = ProductService.GetProductsForCategory(name);
+                return View(productsByCategory.ToList());
+            }
+            var productsBySupplier = ProductService.GetProductsForSupplier(name);
+            return View(productsBySupplier.ToList());
+        }
+        
+        public IActionResult Category(string name)
+        {
+            if (name == null)
+            {
+                var categories = ProductService.GetProductCategories();
+                return PartialView(categories.ToList());
+            }
+            return Redirect($"Index?name={name}");
         }
 
+        public IActionResult Supplier(string name)
+        {
+            if (name == null)
+            {
+                var suppliers = ProductService.GetProductSuppliers();
+                return PartialView(suppliers.ToList());
+            }
+
+            return Redirect($"Index?name={name}");
+        }
+        
         public IActionResult Privacy()
         {
             return View();
@@ -40,17 +72,6 @@ namespace Codecool.CodecoolShop.Controllers
 
         public IActionResult PaymentForm() => View();
 
-        public IActionResult Category()
-        {
-            var categories = ProductService.GetProductCategories();
-            return PartialView(categories.ToList());
-        }
-        
-        public IActionResult Supplier()
-        {
-            var suppliers = ProductService.GetProductSuppliers();
-            return PartialView(suppliers.ToList());
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
