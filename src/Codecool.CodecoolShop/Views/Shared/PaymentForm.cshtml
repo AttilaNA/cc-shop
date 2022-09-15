@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Codecool.CodecoolShop.Controllers
+@using Codecool.CodecoolShop.Helpers
+@{
     ViewData["Title"] = "Payment";
 }
 
@@ -7,14 +9,16 @@
         To complete your order, please fill up the form:
     </div>
     <div class="card-body">
+        <div class="col-md-6">Amount</div>
+        <div class="col-md-6"><strong>@ViewBag.total</strong> </div>
         <div class="card-js">
-          <input class="card-number my-custom-class" name="card-number">
-          <input class="name" id="the-card-name-id" name="card-holders-name" placeholder="Name on card">
-          <input class="expiry-month" name="expiry-month">
-          <input class="expiry-year" name="expiry-year">
-          <input class="cvc" type="password" name="cvc">
+            <input class="card-number my-custom-class" name="card-number">
+            <input class="name" id="the-card-name-id" name="card-holders-name" placeholder="Name on card">
+            <input class="expiry-month" name="expiry-month">
+            <input class="expiry-year" name="expiry-year">
+            <input class="cvc" type="password" name="cvc">
         </div>
-        <span class="mt-20 btn btn-block btn-primary">Pay now</span>
+        <span class="mt-20 btn btn-block btn-primary" id="start-payment">Pay now</span>
     </div>
 </div>
 

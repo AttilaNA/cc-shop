@@ -57,7 +57,7 @@
 			<td class="align-middle"></td>
 			<td class="align-middle">Total Price:</td>
 			<td class="align-middle"> @ViewBag.total @ViewBag.cart[0].Product.Currency</td>
-			<td class="align-middle"><a type="button" class="btn btn-primary checkout" style="float: bottom; color: white">Checkout</a></td>
+			<td class="align-middle"><a type="button" class="btn btn-primary checkout" id="checkout" style="float: bottom; color: white" asp-controller="Order" asp-action="CheckoutForm" >Checkout</a></td>
 		</tr>
 	}else{
 		<tr>

@@ -36,10 +36,7 @@ namespace Codecool.CodecoolShop.Controllers
             return View();
         }
         
-        public IActionResult CheckoutForm() => View();
-
-        public IActionResult PaymentForm() => View();
-
+        
         public IActionResult Category()
         {
             var categories = ProductService.GetProductCategories();
