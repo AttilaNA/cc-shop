@@ -8,6 +8,8 @@ namespace Codecool.CodecoolShop.Daos
         void Remove(int id);
 
         T Get(int id);
+        
+        T Get(string name);
         IEnumerable<T> GetAll();
     }
 }

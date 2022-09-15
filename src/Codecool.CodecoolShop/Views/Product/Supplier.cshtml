@@ -6,5 +6,5 @@
 
     @foreach (var element in Model)
     {
-        <a class="dropdown-item" href="#">@element.Name</a>
+        <a class="dropdown-item" href="/Product/Supplier?name=@element.Name">@element.Name</a>
     }
