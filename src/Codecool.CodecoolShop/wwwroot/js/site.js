@@ -25,20 +25,32 @@ async function showMenu(element){
 function makeAddToCartButtonsClickable() {
     const Buttons = document.querySelectorAll(".add-cart");
     for (let Button of Buttons) {
-        Button.addEventListener("click", addToCart);
+        Button.addEventListener("click", function (e) { addToCart(e.target.dataset.id) });
     }
 }
-
-async function addToCart(element) {
-    await sendGetRequest(`/Cart/buy/${element.target.dataset.id}`);
+async function addToCart(id) {
+    await sendGetRequest(`/Cart/buy/${id}`);
     displayCartItemCount();
+}
 
+async function SetCartItemCount(id, count) {
+    await sendGetRequest(`/Cart/set/${id}/${count}`);
+    displayCartItemCount();
 }
 async function displayCartItemCount() {
     let data = await (await sendGetRequest(`/Cart/item-count`)).json();
-    document.querySelector("#CartCount").innerHTML = (data != "0") ? `(${data})` : "";
+    document.querySelector("#CartCount").innerHTML = (data != "0") ? `${data}` : "";
 }
 
+async function decreaseFromCart(id) {
+    await sendGetRequest(`/Cart/decrease/${id}`);
+    await displayCartItemCount();
+}
+
+async function removeFromCart(id) {
+    await sendGetRequest(`/Cart/remove/${id}`);
+    displayCartItemCount();
+}
 
 async function sendGetRequest(url) {
     let response = await fetch(url, {
