@@ -40,6 +40,7 @@ $('.btn-number').click(function (e) {
     } else {
         input.val(0);
     }
+
 });
 $('.input-number').focusin(function () {
     $(this).data('oldValue', $(this).val());
@@ -85,9 +86,9 @@ $(".input-number").keydown(function (e) {
 
 function updateSubTotalPrice(id, count) {
     let span = document.querySelector(`#sub-${id}`);
-    console.log(span.dataset.price);
-    console.log(count);
     span.innerHTML = parseFloat(span.dataset.price) * parseFloat(count);
+    updateTotalPrice()
+    
 }
 
 
@@ -97,6 +98,17 @@ function AddEventListenerToRemove() {
         Button.addEventListener("click", function(e) {
             removeFromCart(e.target.parentElement.parentElement.dataset.id);
             e.target.parentElement.parentElement.remove();
+            updateTotalPrice();
         });
     }
+}
+
+function updateTotalPrice() {
+    let datas = document.querySelectorAll(".sub-total");
+    let sum = 0;
+    for (var data of datas) {
+        console.log(data);
+        sum += parseFloat(data.innerHTML);
+    }
+    document.getElementById("total-price").innerHTML = sum;
 }

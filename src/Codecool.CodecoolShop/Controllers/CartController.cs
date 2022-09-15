@@ -120,6 +120,7 @@ namespace Codecool.CodecoolShop.Controllers
             return count;
         }
 
+        [Route("total-price")]
         public decimal getTotalPrice()
         {
             decimal sum = 0; 

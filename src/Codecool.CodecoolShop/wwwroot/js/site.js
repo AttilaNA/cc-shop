@@ -41,7 +41,7 @@ async function displayCartItemCount() {
 
 async function decreaseFromCart(id) {
     await sendGetRequest(`/Cart/decrease/${id}`);
-    displayCartItemCount();
+    await displayCartItemCount();
 }
 
 async function removeFromCart(id) {
