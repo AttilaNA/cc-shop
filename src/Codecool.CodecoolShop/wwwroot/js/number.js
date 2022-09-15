@@ -1,4 +1,5 @@
-﻿$('.btn-number').click(function (e) {
+﻿AddEventListenerToRemove();
+$('.btn-number').click(function (e) {
     e.preventDefault();
 
     fieldName = $(this).attr('data-field');
@@ -13,6 +14,8 @@
                 if (document.querySelector('[data-type="plus"]').disabled) {
                     document.querySelector('[data-type="plus"]').disabled = false;
                 }
+                decreaseFromCart(input[0].dataset.id);
+                updateSubTotalPrice(input[0].dataset.id, currentVal - 1);
             }
             if (parseInt(input.val()) == input.attr('min')) {
                 $(this).attr('disabled', true);
@@ -26,6 +29,8 @@
                 {
                     document.querySelector('[data-type="minus"]').disabled = false;
                 }
+                addToCart(input[0].dataset.id);
+                updateSubTotalPrice(input[0].dataset.id,currentVal + 1);
             }
             if (parseInt(input.val()) == input.attr('max')) {
                 $(this).attr('disabled', true);
@@ -76,3 +81,22 @@ $(".input-number").keydown(function (e) {
         e.preventDefault();
     }
 });
+
+
+function updateSubTotalPrice(id, count) {
+    let span = document.querySelector(`#sub-${id}`);
+    console.log(span.dataset.price);
+    console.log(count);
+    span.innerHTML = parseFloat(span.dataset.price) * parseFloat(count);
+}
+
+
+function AddEventListenerToRemove() {
+    const Buttons = document.querySelectorAll(".remove");
+    for (let Button of Buttons) {
+        Button.addEventListener("click", function(e) {
+            removeFromCart(e.target.parentElement.parentElement.dataset.id);
+            e.target.parentElement.parentElement.remove();
+        });
+    }
+}

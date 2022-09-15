@@ -60,14 +60,30 @@ namespace Codecool.CodecoolShop.Controllers
           
         }
 
+        [Route("decrease/{id}")]
+        public void Decrease(string id)
+        {
+            if (SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart") != null)
+            {
+                
+                List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart");
+                int index = isExist(id);
+                if (index != -1)
+                {
+                    cart[index].Quantity--;
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                }
+            }
+        }
+
         [Route("remove/{id}")]
-        public IActionResult Remove(string id)
+        public string Remove(string id)
         {
             List<CartItem> cart = SessionHelper.GetObjectFromJson<List<CartItem>>(HttpContext.Session, "cart");
             int index = isExist(id);
             cart.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
-            return RedirectToAction("Index");
+            return "Removed";
         }
 
         private int isExist(string id)
