@@ -9,7 +9,7 @@ namespace Codecool.CodecoolShop.Helpers
         {
             string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
-            File.AppendAllText(json, $"./Data/${fileName}.json");
+            File.AppendAllText($"./Data/{fileName}.json",json);
         }
 
         public static T ReadJsonFile<T>(string fileName)

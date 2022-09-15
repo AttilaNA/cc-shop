@@ -1,0 +1,64 @@
+{}{
+  "data": [
+    {
+      "Currency": "USD",
+      "DefaultPrice": 49.9,
+      "ProductCategory": {
+        "Products": null,
+        "Department": "Hardware",
+        "Id": 1,
+        "Name": "Tablet",
+        "Description": "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display."
+      },
+      "Supplier": {
+        "Products": null,
+        "Id": 1,
+        "Name": "Amazon",
+        "Description": "Digital content and services"
+      },
+      "Id": 1,
+      "Name": "Amazon Fire",
+      "Description": "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support."
+    },
+    {
+      "Currency": "USD",
+      "DefaultPrice": 479.0,
+      "ProductCategory": {
+        "Products": null,
+        "Department": "Hardware",
+        "Id": 1,
+        "Name": "Tablet",
+        "Description": "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display."
+      },
+      "Supplier": {
+        "Products": null,
+        "Id": 2,
+        "Name": "Lenovo",
+        "Description": "Computers"
+      },
+      "Id": 2,
+      "Name": "Lenovo IdeaPad Miix 700",
+      "Description": "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand."
+    },
+    {
+      "Currency": "USD",
+      "DefaultPrice": 89.0,
+      "ProductCategory": {
+        "Products": null,
+        "Department": "Hardware",
+        "Id": 1,
+        "Name": "Tablet",
+        "Description": "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display."
+      },
+      "Supplier": {
+        "Products": null,
+        "Id": 1,
+        "Name": "Amazon",
+        "Description": "Digital content and services"
+      },
+      "Id": 3,
+      "Name": "Amazon Fire HD 8",
+      "Description": "Amazon's latest Fire HD 8 tablet is a great value for media consumption."
+    }
+  ]
+}
