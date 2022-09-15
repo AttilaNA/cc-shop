@@ -75,7 +75,7 @@ async function sendPostRequest(url, payload) {
 $("#checkout-form").validate();
 
 function collectCheckoutForm() {
-    const checkoutForm = document.querySelector("#checkout");
+    const checkoutForm = document.querySelector("#checkout-form");
     let editedForm = new FormData(checkoutForm);
     let billingAddress = editedForm.get('address');
     let city = editedForm.get('city');
@@ -94,11 +94,12 @@ function collectCheckoutForm() {
 }
 
 async function collectOrder() {
-    await sendPostRequest('/Order/index', collectCheckoutForm());
+    let response = await sendPostRequest('/Order/index', collectCheckoutForm());
+    window.location.href = response.url;
 }
 
 function proceedToPayment() {
     const paymentButton = document.querySelector("#payment");
-    paymentButton.addEventListener("click", collectOrder)
-    
+    paymentButton.addEventListener("click", collectOrder);
+
 }

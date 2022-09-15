@@ -12,9 +12,10 @@ public class OrderController : Controller
     public IActionResult Index(Order obj)
     {
         SessionHelper.SetObjectAsJson(HttpContext.Session, "order", obj);
-        
+
         return RedirectToAction("PaymentForm");
     }
+
     
     public IActionResult CheckoutForm() => View();
 
