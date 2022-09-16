@@ -1,10 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Confirmation";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+<h2>@ViewBag.Title</h2>
+<h3>We've received your order with the following details</h3>
 <table class="table">
 	<thead class="thead-dark">
 	<tr>
@@ -40,9 +41,34 @@
 			<td class="align-middle"> <span id="total-price">@ViewBag.total</span> @ViewBag.cart[0].Product.Currency</td>
 			<td class="align-middle"></td>
 		</tr>
-	}
 	
 	</tbody >
-	
+	<div class="container"></div>
+	<div class="col-md-4 col-md-4" style="display: inline-block">
+		<div class="card">
+			<h5 class="card-title text-center">Your contact information</h5>
+			<div class="card-body">
+				<p class="card-text">@ViewBag.contact.Name</p>
+				<p class="card-text">@ViewBag.contact.Email</p>
+				<p class="card-text">@ViewBag.contact.Phone</p>
+				<p class="card-text">@ViewBag.contact.Address</p>
+				<p class="card-text">@ViewBag.contact.City</p>
+				<p class="card-text">@ViewBag.contact.Zip</p>
+				<p class="card-text">@ViewBag.contact.Country</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 col-md-4" style="display: inline-block">
+		<div class="card">
+        			<h5 class="card-title text-center">Your shipping information</h5>
+        			<div class="card-body">
+        				<p class="card-text">@ViewBag.contact.Name</p>
+        				<p class="card-text">@ViewBag.contact.ShippingAddress</p>
+        				<p class="card-text">@ViewBag.contact.City</p>
+        				<p class="card-text">@ViewBag.contact.Zip</p>
+        				<p class="card-text">@ViewBag.contact.Country</p>
+        			</div>
+        		</div>
+	</div>
 
 </table >

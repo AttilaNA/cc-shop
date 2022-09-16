@@ -28,6 +28,8 @@ public class OrderController : Controller
     {
         Order paidOrder = CollectOrderInformation();
         ViewBag.cart = paidOrder.OrderedItems;
+        ViewBag.contact = paidOrder;
+        ViewBag.total = GetTotalPrice();
         return PartialView();
     }
 

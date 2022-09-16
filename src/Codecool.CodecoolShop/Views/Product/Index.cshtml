@@ -21,7 +21,7 @@
                     <p class="card-text">@element.Description.</p>
                     <p class="card-text">Category: @element.ProductCategory.Department</p>
                     <p class="card-text">Supplier: @element.Supplier.Name</p>
-                    <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
+                    <p class="card-text text-center"><strong>Price: @element.DefaultPrice @element.Currency</strong></p>
                     <a type="button"  class="btn btn-primary add-cart" style="float: bottom; color: white" data-id=@element.Id>Add To Cart</a>
                 </div>
             </div>
